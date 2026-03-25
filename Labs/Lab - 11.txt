@@ -25,6 +25,5 @@ Configure
 3. Set minimum file age if needed
 4. Set exclude file types if needed
 5. Configure schedules for optimization
-6. Click OK
-
+6. Click OK 
 
