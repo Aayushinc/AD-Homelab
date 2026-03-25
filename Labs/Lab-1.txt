@@ -1,0 +1,53 @@
+1. Windows Server VM(s) in Proxmox
+ Create the first Windows Server VM
+1. Log in to Proxmox Web UI
+2. In the top right, click Create VM
+3.  Under General
+- Choose your node
+- VM ID: leave default or choose one
+- Name: DC1 or Main-DC
+4. Under OS
+- Select your Windows Server ISO
+5. Under System
+- Leave default unless you want UEFI
+6. Under Disks
+- Set disk size, for example 80 GB or more
+- Storage: choose your datastore
+7. Under CPU
+- Select 2–4 cores
+8. Under Memory
+- Set 4096 MB or more
+9.Under Network
+- Choose bridge, usually vmbr0
+Click Finish
+
+
+2. Start the VM
+1. Select the VM from the left panel
+2. Click Start
+3. Click Console
+4. Go through normal Windows Server installation
+5. Set local Administrator password
+
+3. Rename the server
+1. Inside Windows Server, open Server Manager
+2. Click Local Server
+3. Next to Computer name, click the current name
+4. In System Properties, click Change
+5. Rename it to DC1
+6. Click OK
+7. Restart
+
+4. Set static IP
+1. Open Server Manager
+2. Click Local Server
+3. Click the Ethernet link next to your network
+4. In Network Connections, right-click adapter → Properties
+5. Double-click Internet Protocol Version 4 (TCP/IPv4)
+6.Enter:
+- IP address
+- Subnet mask
+- Default gateway
+- Preferred DNS = the server itself once DC is installed, or temporary DNS for now
+
+Click OK
