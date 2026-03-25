@@ -1,9 +1,10 @@
 # IT Admin Homelab Project – Dell PowerEdge R430
 
 ## Overview
-To strengthen my IT Administration skills in a challenging job market, I built a hands-on enterprise-style homelab using a Dell PowerEdge R430 server.
+Polisihing my IT Administration skills in a challenging job market, I built a hands-on enterprise-style homelab using a Dell PowerEdge R430 server.
 
-This lab helped me refresh and practice core infrastructure concepts such as virtualization, Active Directory, Group Policy, file services, redundancy, patch management, and deployment services.
+**This lab helped me **refresh** and practice core infrastructure concepts such as virtualization, Active Directory, Group Policy, file services, redundancy, patch management, and deployment services.
+**
 
 ## Lab Environment
 - Hardware: Dell PowerEdge R430
