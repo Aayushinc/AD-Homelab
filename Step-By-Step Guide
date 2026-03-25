@@ -1,0 +1,479 @@
+1. Windows Server VM(s) in Proxmox
+Create the first Windows Server VM
+Log in to Proxmox Web UI
+In the top right, click Create VM
+Under General
+Choose your node
+VM ID: leave default or choose one
+Name: DC1 or Main-DC
+Under OS
+Select your Windows Server ISO
+Under System
+Leave default unless you want UEFI
+Under Disks
+Set disk size, for example 80 GB or more
+Storage: choose your datastore
+Under CPU
+Select 2–4 cores
+Under Memory
+Set 4096 MB or more
+Under Network
+Choose bridge, usually vmbr0
+Click Finish
+Start the VM
+Select the VM from the left panel
+Click Start
+Click Console
+Go through normal Windows Server installation
+Set local Administrator password
+Rename the server
+Inside Windows Server, open Server Manager
+Click Local Server
+Next to Computer name, click the current name
+In System Properties, click Change
+Rename it to DC1
+Click OK
+Restart
+Set static IP
+Open Server Manager
+Click Local Server
+Click the Ethernet link next to your network
+In Network Connections, right-click adapter → Properties
+Double-click Internet Protocol Version 4 (TCP/IPv4)
+Enter:
+IP address
+Subnet mask
+Default gateway
+Preferred DNS = the server itself once DC is installed, or temporary DNS for now
+Click OK
+
+
+2. Active Directory Users and Computers
+Install Active Directory Domain Services
+Open Server Manager
+Click Manage → Add Roles and Features
+Click Next
+Choose Role-based or feature-based installation
+Select your server
+Check Active Directory Domain Services
+Click Add Features
+Click Next until Install
+Click Install
+Promote server to Domain Controller
+After installation, in Server Manager, click the notification flag
+Click Promote this server to a domain controller
+Choose Add a new forest
+Enter root domain name, for example:
+lab.local
+Click Next
+Set DSRM password
+Keep DNS and Global Catalog checked
+Continue through warnings
+Click Install
+Server restarts automatically
+Open Active Directory Users and Computers
+Open Server Manager
+Click Tools
+Click Active Directory Users and Computers
+
+You will now see your domain and default containers.
+
+
+
+3. OUs: IT, HR, Sales, Operations
+Create Organizational Units
+In Active Directory Users and Computers
+Expand your domain name
+Right-click the domain
+Click New → Organizational Unit
+Enter name: IT
+Click OK
+Repeat for:
+HR
+Sales
+Operations
+Optional: create users inside each OU
+Right-click the OU, for example HR
+Click New → User
+Enter first name, last name, user logon name
+Click Next
+Set password
+Choose password options
+Click Finish
+
+Repeat for each department.
+
+
+
+4. Group Policy Management
+Open Group Policy Management
+Open Server Manager
+Click Tools
+Click Group Policy Management
+Create a GPO for HR
+Expand:
+Forest
+Domains
+your domain
+Right-click the HR OU
+Click Create a GPO in this domain, and Link it here
+Name it something like:
+HR Policy
+Click OK
+Edit the GPO
+Right-click HR Policy
+Click Edit
+
+Now configure the settings you want.
+
+Password Policy
+
+Important: domain password policy is usually applied at the domain level, not a normal OU GPO.
+
+To set domain password policy:
+
+In Group Policy Management
+Right-click Default Domain Policy
+Click Edit
+Go to:
+Computer Configuration
+Policies
+Windows Settings
+Security Settings
+Account Policies
+Password Policy
+Configure:
+Minimum password length
+Maximum password age
+Password complexity
+Close editor
+No Control Panel Access
+
+For OU-level users:
+
+Edit HR Policy
+Go to:
+User Configuration
+Policies
+Administrative Templates
+Control Panel
+Double-click Prohibit access to Control Panel and PC settings
+Set to Enabled
+Click Apply → OK
+Wallpaper Policy
+In the same GPO editor, go to:
+User Configuration
+Policies
+Administrative Templates
+Desktop
+Desktop
+Double-click Desktop Wallpaper
+Set to Enabled
+Enter path to wallpaper file, for example a shared path
+Choose style
+Click Apply → OK
+Mapped Drives
+In GPO editor, go to:
+User Configuration
+Preferences
+Windows Settings
+Drive Maps
+Right-click blank area → New → Mapped Drive
+Action: Create
+Location: \\DC1\HRShare
+Drive Letter: choose one, e.g. H:
+Label as: HR Shared Drive
+Click Apply → OK
+
+Repeat similar GPOs for Sales and Operations.
+
+Force policy update
+On client machine, open Command Prompt
+Run:
+gpupdate /force
+
+
+
+5. Mapped Drives
+
+This is often done after creating file shares.
+
+Create a shared folder
+Open File Explorer
+Create folder, for example:
+D:\HRShare
+Right-click folder → Properties
+Go to Sharing
+Click Advanced Sharing
+Check Share this folder
+Give share name:
+HRShare
+Click Permissions
+Remove broad access if needed
+Add appropriate group or users
+Click OK
+Link it with GPO Drive Maps
+
+Follow the mapped drives section above and point to:
+
+\\DC1\HRShare
+\\DC1\SalesShare
+\\DC1\OperationsShare
+Verify on client
+Log in as a domain user from that OU
+Open This PC
+Check if mapped drive appears
+
+
+6. FSRM quotas / file screening
+Install FSRM
+Open Server Manager
+Click Manage → Add Roles and Features
+Click Next
+Select your server
+Go to File and Storage Services
+Expand File and iSCSI Services
+Check File Server Resource Manager
+Click Install
+Open FSRM
+In Server Manager
+Click Tools
+Click File Server Resource Manager
+Create a quota
+In FSRM, expand Quota Management
+Click Quotas
+On the right, click Create Quota
+Select path, for example:
+D:\HRShare
+Choose:
+Create quota on path
+Select Derive properties from this quota template or define custom properties
+Example size:
+2 GB or 5 GB
+Configure thresholds
+85%
+95%
+100%
+Add email or event notifications if you want
+Click Create
+Create file screening
+In FSRM, expand File Screening Management
+Click File Screens
+On the right, click Create File Screen
+Select folder path, e.g. D:\HRShare
+Choose:
+Active screening
+Select template like Block Executable Files
+or create custom screening group
+Click Create
+Exclude images/videos if you want
+Under File Screening Management
+Click File Groups
+Create or edit a group
+Add patterns like:
+*.jpg
+*.png
+*.mp4
+*.avi
+*.exe
+Use that group in your file screen
+
+
+
+7. File permission settings
+
+There are two layers:
+
+Share permissions
+NTFS permissions
+
+NTFS is the more important one for fine control.
+
+Set NTFS permissions
+Right-click folder, e.g. D:\HRShare
+Click Properties
+Go to Security
+Click Edit
+Click Add
+Add a user or group, for example:
+HR Users
+Select the group
+Tick required permissions:
+Read
+Write
+Modify
+Click Apply → OK
+Best practice setup
+
+Example:
+
+HR users → Modify
+IT admins → Full control
+Sales users → No access to HR share
+Set Share permissions
+Right-click folder → Properties
+Go to Sharing
+Click Advanced Sharing
+Click Permissions
+Remove Everyone if needed
+Add specific groups
+Assign:
+Read
+Change
+Full Control
+Click OK
+
+
+8. Secondary Domain Controller
+
+This is your backup/additional DC.
+
+Create second Windows Server VM
+
+In Proxmox:
+
+Click Create VM
+Name it DC2
+Install Windows Server the same way
+Assign static IP
+Rename machine to DC2
+Join DC2 to domain
+On DC2, open Server Manager
+Click Local Server
+Click current Workgroup
+Click Change
+Choose Domain
+Enter your domain name, e.g. lab.local
+Enter domain admin credentials
+Click OK
+Restart
+Install AD DS on DC2
+Open Server Manager
+Click Manage → Add Roles and Features
+Install Active Directory Domain Services
+After install, click notification flag
+Click Promote this server to a domain controller
+Add as additional domain controller
+Choose Add a domain controller to an existing domain
+Enter domain admin credentials if needed
+Select your domain
+Keep:
+DNS checked
+Global Catalog checked
+Continue through wizard
+Click Install
+Server restarts
+Verify replication
+On DC1 or DC2, open Active Directory Users and Computers
+Create a test user in an OU
+Wait a bit
+Check if it appears on the other DC
+Check AD Sites and Services
+Open Server Manager
+Click Tools
+Click Active Directory Sites and Services
+Expand Servers
+Verify both DC1 and DC2 appear
+
+Important note:
+What you built is usually redundancy/failover through AD replication, not a traditional Windows failover cluster for Domain Controllers. 
+
+That is more correct.
+
+
+9. WSUS dashboard
+Install WSUS
+Open Server Manager
+Click Manage → Add Roles and Features
+Select Windows Server Update Services
+Add required features
+Continue
+Choose content location, for example:
+D:\WSUS
+Click Install
+Post-install tasks
+After installation, click the notification flag
+Click Launch Post-Installation tasks
+Wait until complete
+Open WSUS
+Open Server Manager
+Click Tools
+Click Windows Server Update Services
+Initial WSUS configuration
+In WSUS console, start configuration wizard
+Choose whether to join Microsoft Update Improvement Program
+Select upstream source:
+Synchronize from Microsoft Update
+Set proxy if needed
+Choose:
+Languages
+Products
+Classifications
+Set sync schedule
+Finish wizard
+Click Synchronize Now
+
+
+10. WDS deployment screen
+Install WDS
+Open Server Manager
+Click Manage → Add Roles and Features
+Select Windows Deployment Services
+Install both:
+Deployment Server
+Transport Server
+Click Install
+Open WDS
+Open Server Manager
+Click Tools
+Click Windows Deployment Services
+Configure WDS
+In the WDS console, expand server
+Right-click your server
+Click Configure Server
+Choose Integrated with Active Directory
+Set remote install folder path, for example:
+D:\RemoteInstall
+Choose PXE response option
+Finish
+Add boot image
+Expand server
+Right-click Boot Images
+Click Add Boot Image
+Browse to Windows ISO contents, usually:
+sources\boot.wim
+Name it
+Finish
+Add install image
+Right-click Install Images
+Create image group
+Add install image from:
+sources\install.wim
+Finish
+Test PXE boot
+Create a test VM in Proxmox
+Set network boot / PXE boot
+Start VM
+It should contact WDS and show deployment environment
+
+
+
+
+Follow this exact order:
+
+Create DC1 VM in Proxmox
+Set static IP and rename server
+Install AD DS and promote to DC
+Open ADUC and create OUs
+Create users/groups
+Create shared folders
+Set NTFS/share permissions
+Create mapped drives through GPO
+Install and configure FSRM
+Install and configure WSUS
+Install and configure WDS
+Enable Data Deduplication
+Create DC2
+Join DC2 to domain
+Promote DC2 as additional DC
+Test login, replication, and access
