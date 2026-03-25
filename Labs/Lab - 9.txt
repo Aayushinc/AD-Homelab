@@ -1,0 +1,37 @@
+9. WSUS dashboard
+
+Install WSUS
+1. Open Server Manager
+2. Click Manage → Add Roles and Features
+3 Select Windows Server Update Services
+4. Add required features
+5. Continue
+6. Choose content location, for example:
+- D:\WSUS
+7. Click Install
+
+
+Post-install tasks
+1. After installation, click the notification flag
+2. Click Launch Post-Installation tasks
+3. Wait until complete
+
+Open WSUS
+1. Open Server Manager
+2. Click Tools
+3. Click Windows Server Update Services
+
+
+Initial WSUS configuration
+1. In WSUS console, start configuration wizard
+2. Choose whether to join Microsoft Update Improvement Program
+3. Select upstream source:
+- Synchronize from Microsoft Update
+4. Set proxy if needed
+5. Choose:
+- Languages
+- Products
+- Classifications
+6. Set sync schedule
+7. Finish wizard
+8. Click Synchronize Now

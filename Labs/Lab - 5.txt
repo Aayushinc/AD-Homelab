@@ -1,0 +1,32 @@
+5. Mapped Drives
+
+This is often done after creating file shares.
+
+Create a shared folder
+1. Open File Explorer
+2. Create folder, for example:
+- D:\HRShare
+3. Right-click folder → Properties
+4. Go to Sharing
+5. Click Advanced Sharing
+6. Check Share this folder
+7. Give share name:
+- HRShare
+8. Click Permissions
+9. Remove broad access if needed
+10. Add appropriate group or users
+11. Click OK
+
+
+Link it with GPO Drive Maps
+
+Follow the mapped drives section above and point to:
+
+\\DC1\HRShare
+\\DC1\SalesShare
+\\DC1\OperationsShare
+
+Verify on client
+1. Log in as a domain user from that OU
+2. Open This PC
+3. Check if mapped drive appears

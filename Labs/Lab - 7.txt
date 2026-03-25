@@ -1,0 +1,46 @@
+7. File permission settings
+
+There are two layers:
+
+- Share permissions
+- NTFS permissions
+
+NTFS is the more important one for fine control.
+
+Set NTFS permissions
+1. Right-click folder, e.g. D:\HRShare
+2. Click Properties
+3. Go to Security
+4. Click Edit
+5. Click Add
+6. Add a user or group, for example:
+- HR Users
+7. Select the group
+8.  Tick required permissions:
+- Read
+- Write
+- Modify
+9 Click Apply → OK
+
+
+Best practice setup
+
+Example:
+
+- HR users → Modify
+- IT admins → Full control
+- Sales users → No access to HR share
+
+
+1. Set Share permissions
+2. Right-click folder → Properties
+3. Go to Sharing
+4. Click Advanced Sharing
+5. Click Permissions
+3. Remove Everyone if needed
+6. Add specific groups
+7. Assign:
+- Read
+- Change
+- Full Control
+8.Click OK

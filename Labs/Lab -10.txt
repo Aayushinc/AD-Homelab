@@ -1,0 +1,49 @@
+10. WDS deployment screen
+
+Install WDS
+1. Open Server Manager
+2. Click Manage → Add Roles and Features
+3. Select Windows Deployment Services
+4. Install both:
+- Deployment Server
+- Transport Server
+5. Click Install
+
+Open WDS
+1. Open Server Manager
+2. Click Tools
+3. Click Windows Deployment Services
+
+
+Configure WDS
+1. In the WDS console, expand server
+2. Right-click your server
+3. Click Configure Server
+4. Choose Integrated with Active Directory
+5. Set remote install folder path, for example:
+- D:\RemoteInstall
+6. Choose PXE response option
+7. Finish
+
+Add boot image
+1. Expand server
+2. Right-click Boot Images
+3. Click Add Boot Image
+4. Browse to Windows ISO contents, usually:
+- sources\boot.wim
+5 Name it
+6. Finish
+
+Add install image
+1. Right-click Install Images
+2. Create image group
+3. Add install image from:
+- sources\install.wim
+4. Finish
+
+
+Test PXE boot
+1. Create a test VM in Proxmox
+2. Set network boot / PXE boot
+3. Start VM
+4. It should contact WDS and show deployment environment

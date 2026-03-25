@@ -1,0 +1,32 @@
+2. Active Directory Users and Computers
+
+Install Active Directory Domain Services
+1. Open Server Manager
+2. Click Manage → Add Roles and Features
+3. Click Next
+4. Choose Role-based or feature-based installation
+5. Select your server
+6. Check Active Directory Domain Services
+7. Click Add Features
+8. Click Next until Install
+9. Click Install
+
+Promote server to Domain Controller
+1. After installation, in Server Manager, click the notification flag
+2. Click Promote this server to a domain controller
+3. Choose Add a new forest
+4. Enter root domain name, for example:
+- lab.local
+5. Click Next
+6. Set DSRM password
+7. Keep DNS and Global Catalog checked
+8. Continue through warnings
+9. Click Install
+10. Server restarts automatically
+
+Open Active Directory Users and Computers
+1. Open Server Manager
+2. Click Tools
+3. Click Active Directory Users and Computers
+
+You will now see your domain and default containers.

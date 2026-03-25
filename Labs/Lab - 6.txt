@@ -1,0 +1,60 @@
+6. FSRM quotas / file screening
+
+Install FSRM
+1. Open Server Manager
+2. Click Manage → Add Roles and Features
+3. Click Next
+4. Select your server
+5. Go to File and Storage Services
+6. Expand File and iSCSI Services
+7. Check File Server Resource Manager
+8. Click Install
+
+Open FSRM
+1. In Server Manager
+2. Click Tools
+3. Click File Server Resource Manager
+
+
+Create a quota
+1. In FSRM, expand Quota Management
+2. Click Quotas
+3. On the right, click Create Quota
+4. Select path, for example:
+- D:\HRShare
+5. Choose:
+- Create quota on path
+6. Select Derive properties from this quota template or define custom properties
+7. Example size:
+- 2 GB or 5 GB
+8. Configure thresholds
+- 85%
+- 95%
+- 100%
+9. Add email or event notifications if you want
+10. Click Create
+
+
+Create file screening
+1. In FSRM, expand File Screening Management
+2. Click File Screens
+3. On the right, click Create File Screen
+4. Select folder path, e.g. D:\HRShare
+5. Choose:
+- Active screening
+6. Select template like Block Executable Files
+or create custom screening group
+7. Click Create
+
+
+Exclude images/videos if you want
+1. Under File Screening Management
+2. Click File Groups
+3. Create or edit a group
+4. Add patterns like:
+*.jpg
+*.png
+*.mp4
+*.avi
+*.exe
+5. Use that group in your file screen

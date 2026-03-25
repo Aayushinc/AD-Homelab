@@ -1,0 +1,30 @@
+11. Data Dedup settings
+
+Install Data Deduplication
+1. Open Server Manager
+2. Click Manage → Add Roles and Features
+3. Go to File and Storage Services
+4. Expand File and iSCSI Services
+5. Check Data Deduplication
+6. Click Install
+
+
+Enable dedup on a volume
+1. In Server Manager
+2. Click File and Storage Services
+3. Click Volumes
+4. Click Disks or Volumes
+5. Select the data volume, for example D:
+6. Right-click or use tasks menu
+7. Click Configure Data Deduplication
+
+Configure
+1. Check Enable data deduplication
+2. Choose usage type, usually:
+- General purpose file server
+3. Set minimum file age if needed
+4. Set exclude file types if needed
+5. Configure schedules for optimization
+6. Click OK
+
+

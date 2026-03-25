@@ -1,0 +1,97 @@
+4. Group Policy Management
+
+Open Group Policy Management
+1. Open Server Manager
+2. Click Tools
+3. Click Group Policy Management
+
+Create a GPO for HR
+1. Expand:
+- Forest
+- Domains
+- your domain
+2. Right-click the HR OU
+3. Click Create a GPO in this domain, and Link it here
+4. Name it something like:
+- HR Policy
+5. Click OK
+
+Edit the GPO
+1. Right-click HR Policy
+2. Click Edit
+
+Now configure the settings you want.
+
+a. Password Policy
+
+Important: domain password policy is usually applied at the domain level, not a normal OU GPO.
+
+To set domain password policy:
+
+1. In Group Policy Management
+2. Right-click Default Domain Policy
+3. Click Edit
+4. Go to:
+- Computer Configuration
+- Policies
+- Windows Settings
+- Security Settings
+- Account Policies
+- Password Policy
+5. Configure:
+- Minimum password length
+- Maximum password age
+- Password complexity
+6. Close editor
+
+
+b. No Control Panel Access
+
+For OU-level users:
+
+1. Edit HR Policy
+2. Go to:
+- User Configuration
+- Policies
+- Administrative Templates
+- Control Panel
+3. Double-click Prohibit access to Control Panel and PC settings
+4. Set to Enabled
+5. Click Apply → OK
+
+
+c. Wallpaper Policy
+1. In the same GPO editor, go to:
+- User Configuration
+- Policies
+- Administrative Templates
+- Desktop
+- Desktop
+2. Double-click Desktop Wallpaper
+3. Set to Enabled
+4. Enter path to wallpaper file, for example a shared path
+5. Choose style
+6. Click Apply → OK
+
+
+d. Mapped Drives
+1. In GPO editor, go to:
+- User Configuration
+- Preferences
+- Windows Settings
+- Drive Maps
+
+2. Right-click blank area → New → Mapped Drive
+3. Action: Create
+4. Location: \\DC1\HRShare
+5. Drive Letter: choose one, e.g. H:
+6. Label as: HR Shared Drive
+7. Click Apply → OK
+
+Repeat similar GPOs for Sales and Operations.
+
+Force policy update
+On client machine, open Command Prompt
+
+Run:
+gpupdate /force

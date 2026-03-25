@@ -1,0 +1,60 @@
+8. Secondary Domain Controller
+
+This is your backup/additional DC.
+
+Create second Windows Server VM
+
+In Proxmox:
+
+1. Click Create VM
+2. Name it DC2
+3. Install Windows Server the same way
+4. Assign static IP
+5. Rename machine to DC2
+
+
+Join DC2 to domain
+1. On DC2, open Server Manager
+2. Click Local Server
+3. Click current Workgroup
+4. Click Change
+5. Choose Domain
+6. Enter your domain name, e.g. lab.local
+7. Enter domain admin credentials
+8. Click OK
+9. Restart
+
+Install AD DS on DC2
+1. Open Server Manager
+2. Click Manage → Add Roles and Features
+3. Install Active Directory Domain Services
+4. After install, click notification flag
+5. Click Promote this server to a domain controller
+
+
+Add as additional domain controller
+1. Choose Add a domain controller to an existing domain
+2. Enter domain admin credentials if needed
+3. Select your domain
+4. Keep:
+- DNS checked
+- Global Catalog checked
+5. Continue through wizard
+6. Click Install
+7. Server restarts
+
+
+Verify replication
+1. On DC1 or DC2, open Active Directory Users and Computers
+2. Create a test user in an OU
+3. Wait a bit
+4. Check if it appears on the other DC
+
+
+Check AD Sites and Services
+1. Open Server Manager
+2. Click Tools
+3. Click Active Directory Sites and Services
+4. Expand Servers
+5. Verify both DC1 and DC2 appear
+

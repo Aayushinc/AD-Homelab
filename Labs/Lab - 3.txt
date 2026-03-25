@@ -1,0 +1,24 @@
+3. OUs: IT, HR, Sales, Operations
+
+Create Organizational Units
+1. In Active Directory Users and Computers
+2. Expand your domain name
+3. Right-click the domain
+4. Click New → Organizational Unit
+5. Enter name: IT
+6. Click OK
+7. Repeat for:
+- HR
+- Sales
+- Operations
+
+Optional: create users inside each OU
+1. Right-click the OU, for example HR
+2. Click New → User
+3. Enter first name, last name, user logon name
+4. Click Next
+5. Set password
+6. Choose password options
+7. Click Finish
+
+Repeat for each department.
