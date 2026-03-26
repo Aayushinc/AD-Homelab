@@ -1,0 +1,41 @@
+Lab 2: Create users and assign admin roles
+A. Create your users
+
+You’ll likely want:
+
+- one Global Admin
+- one Hybrid Identity Admin
+- a few normal users for HR, IT, Sales, Ops
+
+Steps:
+
+1. Go to the Microsoft 365 admin center.
+2. Open Users > Active users.
+3. Click Add a user.
+4. Enter:
+- display name
+- username
+- domain
+5. Set password options.
+6. Finish creating the user.
+
+Repeat for all required users. The Microsoft 365 admin center uses Users > Active users for user management tasks like password reset and ongoing account actions.
+
+
+B. Assign Global Administrator to only one user
+1. In the Microsoft 365 admin center, go to Users > Active users.
+2. Click the user you want to make your only Global Admin.
+3. In the details pane, open Manage roles or the admin role section.
+4. Choose Admin center access.
+5. Assign Global Administrator.
+6. Save.
+7. Make sure your other regular users do not have that role. The Entra admin center is the central portal for identity administration, but Microsoft 365 admin center remains a standard GUI path for user administration.
+
+C. Assign Hybrid Identity Administrator to one user
+Go to the Microsoft Entra admin center.
+1. Open Identity > Roles & admins.
+2. Search for Hybrid Identity Administrator.
+3. Open the role.
+4. Click Add assignments.
+5. Select the specific user.
+6. Save. Microsoft documents that a Hybrid Identity Administrator account is used during Entra Connect configuration to configure Microsoft Entra ID and create the connector account.

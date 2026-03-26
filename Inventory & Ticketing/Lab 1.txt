@@ -1,0 +1,51 @@
+Lab 1: SharePoint site for IT, asset inventory, and ticketing
+
+A. Create the SharePoint site
+1. Open the SharePoint admin center.
+2. Go to Sites > Active sites.
+3. Click Create.
+4. Choose a site type:
+- Team site if you want Microsoft 365 group-backed collaboration
+- Communication site if you want more broadcast-style pages
+
+For lab, a Team site is usually easier.
+5. Name it something like:
+- IT Operations
+- Set owner and members.
+- Create the site.
+
+Microsoft’s current SharePoint documentation says site creation and management are done through the SharePoint admin center, including Sites > Active sites.
+
+
+
+B. Create the Asset Inventory list
+
+1. Open the new SharePoint site.
+2. Click New > List.
+3. Choose Blank list.
+4. Name it Asset Inventory.
+5. Add columns such as:
+- Asset ID
+- Device Name
+- User Assigned
+- Department
+- Serial Number
+- Status
+- Purchase Date
+6. Save the list.
+
+
+C. Restrict Asset Inventory to IT users only
+
+Best lab method:
+
+1. Open the Asset Inventory list.
+2. Open Settings > List settings.
+3. Open the permissions page for the list.
+4. Stop inheriting permissions from the parent site.
+5. Remove broad access groups.
+6. Add only:
+- IT users
+- IT security group
+- site owner/admins
+7. Save.

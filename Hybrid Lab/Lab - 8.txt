@@ -1,0 +1,27 @@
+Lab 8: Outlook / Exchange Online distribution groups for Sales, IT, HR, Ops
+
+What you want here is a distribution group for each department so mail sent to sales@org.com, it@org.com, and so on reaches all users in that department. Microsoft supports this through the Exchange admin center and also the Microsoft 365 admin center.
+
+A. Create the distribution groups in Exchange admin center
+1. Go to the Exchange admin center.
+2. Open Recipients > Groups or Recipients > Groups > Distribution list, depending on the UI version.
+3. Click Add a group.
+4. Choose Distribution.
+5. Enter:
+- Group name: Sales
+- Email alias/address: sales@org.com
+6. Add owners if prompted.
+7. Add members from your Sales users.
+8. Review and create.
+9. Repeat for:
+- IT → it@org.com
+- HR → hr@org.com
+- Ops → ops@org.com
+
+Microsoft’s Exchange documentation shows this flow through Recipients > Groups, where you choose Distribution group or Distribution list in the creation wizard.
+
+B. Test mail flow
+1. Open Outlook on the web or another mailbox.
+2. Send a test email to sales@org.com.
+3. Confirm all Sales group members receive it.
+4. Repeat for the other groups.

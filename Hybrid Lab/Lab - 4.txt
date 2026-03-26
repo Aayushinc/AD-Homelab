@@ -1,0 +1,21 @@
+Lab 4: Add licenses in M365 — Entra ID P2 and Microsoft 365 E5
+
+Homelab can use the free 1 month trial for both !! 
+
+A. Confirm licenses exist in the tenant
+1. Open the Microsoft 365 admin center.
+2. Go to Billing > Licenses.
+3. Verify that the tenant has:
+- Microsoft Entra ID P2
+- Microsoft 365 E5
+
+Microsoft’s current admin guidance places user and group license management under Billing > Licenses. Also, usage location must be set before license assignment if required.
+
+
+B. Assign licenses to a user
+1. In Billing > Licenses, select the relevant license row or open the user/license details pane depending on your UI.
+2. Choose the user you want to license.
+3. Assign:
+- Microsoft Entra ID P2
+- Microsoft 365 E5
+4. Save.

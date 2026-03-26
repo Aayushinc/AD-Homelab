@@ -1,0 +1,28 @@
+Lab 6: Enable SSPR
+
+A. Turn on SSPR
+1. Open the Microsoft Entra admin center.
+2. Go to Entra ID > Password reset.
+3. Open Properties.
+4. Under Self service password reset enabled, choose:
+- Selected for a lab group, or
+- All if you want all users included
+5. Save. 
+
+Microsoft documents SSPR in the Entra admin center and notes that SSPR reduces help desk calls and can be enabled for selected users or all users.
+
+
+B. Configure authentication methods
+1. Still under Entra ID > Password reset, open Authentication methods.
+2. Set how many methods users must register/use.
+3. Enable methods such as:
+- Mobile phone
+- Email
+- Authenticator app *** 
+4. Save. 
+Microsoft’s authentication methods documentation places SSPR method management at Entra ID > Password reset > Authentication methods.
+
+C. Important license note
+
+If you are using on-prem Active Directory with self-service password writeback scenarios, Microsoft states that paid Microsoft Entra ID P1 or P2 is required.
+Since you will be using the P2 Trial , it will work SSPR. 

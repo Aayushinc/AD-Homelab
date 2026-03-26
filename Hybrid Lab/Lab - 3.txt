@@ -1,0 +1,21 @@
+Lab 3: Add UPN suffix in on-prem Windows AD
+
+This part is on your Windows Server DC.
+
+A. Add a new UPN suffix
+1. On your Domain Controller, open Server Manager.
+2. Click Tools > Active Directory Domains and Trusts.
+3. In the left pane, right-click Active Directory Domains and Trusts at the top.
+4. Click Properties.
+5. Under Alternative UPN suffixes, enter your custom suffix, such as:
+- org.com
+6. Click Add.
+7. Click OK.
+
+B. Apply the new UPN to a user
+1. Open Active Directory Users and Computers.
+2. Open the OU where your test user exists.
+3. Right-click the user and open Properties.
+4. Go to the Account tab.
+5. In the user logon name area, change the suffix from lab.local to org.com.
+6. Click Apply and OK.

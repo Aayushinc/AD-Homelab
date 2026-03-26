@@ -1,0 +1,17 @@
+Lab 7: Enable per-user MFA
+
+A. Open per-user MFA
+1. Sign in to the Microsoft Entra admin center.
+2. Go to Identity > Users > All users.
+3. Click Per-user MFA.
+4. Select the user.
+5. Click Enable MFA.
+6. Save.
+
+Microsoft’s current Entra documentation says the improved per-user MFA experience is reached from Identity > Users > All users > Per-user MFA, where you can enable and manage user MFA states.
+
+B. Test the sign-in experience
+1. Open a private/incognito browser.
+2. Sign in as that user to a Microsoft 365 service.
+3. The user should be prompted to register a second factor.
+4. Complete registration with Microsoft Authenticator or phone-based method.

@@ -1,0 +1,40 @@
+Lab 5: Download and configure Entra Connect for hybrid identity
+
+A. Get the installer
+
+1. Sign in to the Microsoft Entra admin center with at least Hybrid Identity Administrator.
+2. Go to Entra ID > Entra Connect.
+3. Use the page to get the sync installer. Microsoft’s current guidance states the Microsoft Entra Connect Sync installation file is exclusively available from the Microsoft Entra admin center.
+
+
+B. Install on your sync server
+
+Best lab practice:
+
+use a member server, not your DC, if possible
+join it to the domain first
+
+Steps:
+
+1. Navigate to the entra connect and download the Entra Connect (for full control) 
+2. Right-click and run as administrator.
+3. Accept license terms.
+4. Choose Express Settings for the simplest lab, or Customize if you want more control.
+5. When prompted, sign in with:
+- your Microsoft Entra Hybrid Identity Administrator
+- your on-prem AD Enterprise/Domain admin as needed
+6. Select the forest/domain.
+7. Verify UPN mapping.
+8. Complete the wizard.
+9. Allow initial sync.
+
+Microsoft’s hybrid identity documentation and Entra Connect installation guidance describe this as the supported path for integrating on-prem directories with Entra ID.
+
+C. Validate sync worked
+1. Return to the Microsoft Entra admin center.
+2. Go to Identity > Users > All users.
+3. Confirm your synced users appear.
+4. Open a synced user and verify:
+- UPN
+- source
+- assigned licenses later if applicable

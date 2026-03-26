@@ -1,0 +1,43 @@
+A. Create the Ticketing list
+
+1. In the same site, click New > List again.
+2. Choose Blank list.
+3. Name it IT Tickets.
+4. Add columns such as:
+- Ticket ID
+- Title
+- Submitted By
+- Department
+- Priority
+- Status
+- Assigned To
+- Description
+5. Save the list.
+
+
+
+B. Make ticketing accessible to all users in the organization
+
+Simplest lab method:
+
+1. Open the SharePoint site.
+2. Click the site Settings gear.
+3. Open Site permissions.
+4. Add all organization users, a Microsoft 365 group, or a security group to the site’s Members group.
+5. Give them edit/contribute-level access as needed.
+
+
+
+C. Keep ticket submission broad but visibility controlled
+
+If you want users to submit tickets but not browse everyone else’s tickets:
+
+1. Open IT Tickets list.
+2. Go to List settings > Advanced settings.
+3. Under Item-level Permissions, set:
+4. Read access: items created by the user
+5. Create and Edit access: create items and edit items created by the user
+
+
+
+

@@ -1,0 +1,21 @@
+Lab 1: M365 tenant creation
+A. Create the tenant
+1. Sign in to the Microsoft Entra admin center.
+2. Go to Entra ID.
+3. Open Overview.
+4. Click Manage tenants.
+5. Click Create.
+6. Choose Governed Workforce.
+7. On the next screen, enter:
+- Organization name
+- Initial domain name such as yourlaborg.onmicrosoft.com
+- Country/Region
+8. Review and create the tenant.
+9. After creation, switch into the new tenant from Manage tenants.
+
+B. Confirm the tenant is ready
+1. In the Entra admin center, go to Entra ID > Overview.
+2. Note:
+- Tenant name
+- Tenant ID
+3. Primary domain
