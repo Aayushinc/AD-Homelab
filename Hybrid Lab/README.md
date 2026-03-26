@@ -55,10 +55,7 @@ This lab demonstrates how on-premises identity infrastructure can be integrated 
 - Initial cloud environment preparation
 - Tenant verification and administration
 
-### Screenshots
-- Tenant overview
-- Tenant/domain details
-- Microsoft 365 admin center home page
+
 
 ---
 
@@ -75,11 +72,7 @@ This lab demonstrates how on-premises identity infrastructure can be integrated 
 - Role-based access control
 - Least privilege administrative setup
 
-### Screenshots
-- Active users page
-- User creation wizard
-- Global Administrator assignment
-- Hybrid Identity Administrator assignment
+
 
 ---
 
@@ -95,10 +88,7 @@ This lab demonstrates how on-premises identity infrastructure can be integrated 
 - Active Directory identity preparation
 - Hybrid sign-in readiness
 
-### Screenshots
-- Active Directory Domains and Trusts properties
-- Alternative UPN suffix configuration
-- User account properties showing updated UPN
+
 
 ---
 
@@ -117,11 +107,6 @@ This lab demonstrates how on-premises identity infrastructure can be integrated 
 - On-premises to cloud directory synchronization
 - Identity validation and testing
 
-### Screenshots
-- Entra Connect download page
-- Entra Connect setup wizard
-- Directory sync configuration
-- Synced users in Microsoft Entra ID
 
 ---
 
@@ -137,10 +122,7 @@ This lab demonstrates how on-premises identity infrastructure can be integrated 
 - Service assignment
 - Cloud user provisioning
 
-### Screenshots
-- Billing / Licenses page
-- User license assignment page
-- Assigned services view
+
 
 ---
 
@@ -157,10 +139,6 @@ This lab demonstrates how on-premises identity infrastructure can be integrated 
 - Password recovery configuration
 - User self-service feature enablement
 
-### Screenshots
-- SSPR properties
-- Authentication methods settings
-- User registration / test screens
 
 ---
 
@@ -176,10 +154,7 @@ This lab demonstrates how on-premises identity infrastructure can be integrated 
 - Identity protection
 - Secure sign-in configuration
 
-### Screenshots
-- Per-user MFA page
-- MFA enabled user list
-- MFA registration / verification screen
+
 
 ---
 
@@ -205,11 +180,6 @@ This lab demonstrates how on-premises identity infrastructure can be integrated 
 - Department-based mail routing
 - Mail flow validation
 
-### Screenshots
-- Exchange admin center groups page
-- Distribution group configuration
-- Group membership view
-- Mail flow test results
 
 ---
 
