@@ -1,0 +1,83 @@
+Lab 01 - Intune Device Enrollment and Management 
+
+Part 1: Enable Windows automatic enrollment
+
+A. Configure automatic enrollment
+
+1. Sign in to the Microsoft Intune admin center
+2. Go to Devices
+4. Expand Device onboarding
+5. Click Enrollment
+6. Open the Windows tab
+7. Click Automatic enrollment
+Set:
+- MDM user scope = Some or All
+- For a lab, All is easiest
+8. Save
+
+
+
+Part 2: Register / join and enroll a Windows device
+
+There are 3 useful states to understand:
+
+Microsoft Entra registered
+Microsoft Entra joined
+Intune enrolled
+
+For lab, the strongest path is usually Microsoft Entra joined + Intune enrolled for a corporate-style Windows device.
+
+A. Microsoft Entra join a Windows device
+
+1. On the Windows test machine, open Settings
+2. Go to Accounts
+3. Open Access work or school
+4. Click Connect
+5. At the bottom of the pop-up, choose Join this device to Microsoft Entra ID
+6. Enter the lab user’s Microsoft 365 credentials
+7. Complete sign-in and MFA if prompted
+8. Restart if required
+9. Sign in using the Entra/M365 user
+
+
+Part 3: Verify the device appears in Intune
+1. Go back to the Microsoft Intune admin center
+2. Open Devices
+3. Open All devices
+4. Search for the device name
+5. Click the device
+6. Check:
+- ownership
+- compliance
+- join type
+- primary user
+- last check-in
+
+
+Part 4: Use device actions from Intune
+
+A. Sync the device
+
+1. In Intune, go to Devices > All devices
+2. Click the enrolled Windows device
+3. On the device overview page, click Sync
+4. Confirm the action
+
+Microsoft lists Sync as a standard remote action that forces the device to check in and apply the latest policies.
+
+B. Restart the device
+
+1. Stay on the same device page
+2. Click Restart
+3. Confirm
+
+Microsoft lists Restart as a supported remote action in Intune.
+
+C. Retire the device
+
+Stay on the device page
+1. Click Retire
+2. Read the prompt carefully
+3. Confirm
+
+Microsoft states that Retire removes company data and unenrolls the device while preserving personal data, which is especially appropriate for personally owned devices.

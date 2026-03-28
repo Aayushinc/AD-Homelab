@@ -1,0 +1,33 @@
+Lab 13 - Windows Admin Center 
+
+1. In search type "Windows Admin Center"
+2. Click on it and install the admin center
+3. Accept license terms and continue 
+4. Select Custom Setup 
+5. Select Self-Signed Certificate 
+6. Choose automatic update settings 
+7. Send diagnostics data 
+8. Review and click Install
+9. Finish 
+
+Https://{name of server installed on}.homelab.dc
+for eg: If SRV1 
+https://srv1.homelab.dc
+replace homelab.dc with your domain name.
+
+
+Add other DC/Server 
+
+10. Click + Add 
+11. Under server , click Add
+12. Stay on Add one 
+13. enter the server name 
+14. Click Add 
+
+Connect to each DC 
+
+15. Click on a DC/Server
+16. Enter credentials if prompted 
+17. View all information 
+
+

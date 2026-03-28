@@ -1,0 +1,159 @@
+Lab - 14  Windows Event Forwarding 
+
+I used 3 Servers : DC1, SRV1 , SRV2 
+
+DC1 - Collector 
+SRV1 , SRV2 - Forwarding
+
+Part 1 
+On DC1:
+
+1. Open Event Viewer
+2. Expand Subscriptions
+3. If prompted to start the required services, click Yes
+
+That initializes the collector service for event subscriptions on the server. Microsoft’s WEF setup requires the collector to be configured before subscriptions can work.
+
+*** Make sure these services are running on DC2025
+
+1. Open Services and check:
+
+- Windows Event Collector = Running / Automatic or Automatic (Delayed Start)
+- Windows Remote Management (WS-Management) = Running
+
+
+Part 2 — Create the subscription on DC2025
+
+On DC2025 in Event Viewer:
+
+1. Right-click Subscriptions
+2. Click Create Subscription
+
+Fill it in like this:
+
+- General tab
+- Subscription name: Servers to DC2025
+- Description: optional
+- Destination log: Forwarded Events
+- Subscription type and source computers: choose Source computer initiated
+
+3. Then click Select Events.
+
+Select the logs/events
+
+For a simple server forwarding setup, start with:
+
+- Critical
+- Error
+- Warning
+
+And choose logs such as:
+
+- System
+- Application
+
+Advanced / Delivery Optimization
+
+1. Click Advanced and choose:
+
+** Normal for general-purpose use
+Minimize Latency if you want events to show up faster
+Minimize Bandwidth if links are slow
+
+
+Part 3 — Create a GPO for SRV1 and SRV2
+
+Now tell SRV1 and SRV2 where the collector is.
+
+1. On your management machine or DC:
+
+2. Open Group Policy Management
+3. Create a new GPO, for example:
+- WEF - Forward to DC2025
+4. Link it to the OU containing SRV1 and SRV2
+5. Configure the collector address
+
+6. Edit the GPO and go to:
+
+7. Computer Configuration > Policies > Administrative Templates > Windows Components > Event Forwarding
+
+Open:
+
+- Configure target Subscription Manager
+
+- Set it to Enabled
+
+- Click Show
+
+Add this value:
+
+*** Server=http://DC2025.yourdomain.local:5985/wsman/SubscriptionManager/WEC,Refresh=60
+
+Replace DC2025.yourdomain.local with the real FQDN.
+
+
+Part 4 — Make sure WinRM starts on SRV1 and SRV2
+
+1. Still in the same GPO, configure the Windows Remote Management service.
+
+2. Go to:
+
+Computer Configuration > Policies > Windows Settings > Security Settings > System Services
+
+3. Find:
+
+Windows Remote Management (WS-Management)
+
+4. Set it to:
+
+Automatic
+Define this policy setting
+Start the service
+
+
+Part 5 — Open the firewall rule on SRV1 and SRV2
+
+1. In the same GPO, go to:
+
+Computer Configuration > Policies > Windows Settings > Security Settings > Windows Defender Firewall with Advanced Security > Inbound Rules
+
+Enable the built-in WinRM rule, typically:
+
+Windows Remote Management (HTTP-In)
+
+WEF uses WinRM over HTTP 5985 by default unless you intentionally build an HTTPS listener. Microsoft’s WinRM guidance and WEF configuration use that listener/port by default
+
+
+Part 6 — Apply the GPO to SRV1 and SRV2
+
+1. On SRV1 and SRV2:
+
+2. Run:
+gpupdate /force
+Restart the servers if policy does not apply cleanly right away.
+
+
+Part 7 — Verify from the GUI
+On SRV1 and SRV2
+
+Open Event Viewer and check:
+
+Applications and Services Logs > Microsoft > Windows > Eventlog-ForwardingPlugin > Operational
+
+You want to see events indicating the forwarder connected successfully and the subscription was created. Microsoft specifically calls out successful connection events here for source-initiated subscriptions.
+
+On DC2025
+
+Open:
+
+Event Viewer > Subscriptions
+
+Click your subscription and look at Runtime Status.
+
+You should see SRV1 and SRV2 become active. Microsoft states the collector’s runtime status will show active computers once the forwarding works.
+
+Then open:
+
+Windows Logs > Forwarded Events
+
+You should start seeing events from both servers.

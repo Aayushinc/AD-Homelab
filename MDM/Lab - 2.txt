@@ -1,0 +1,53 @@
+Lab 2  — Deploy Microsoft 365 Apps from Intune
+
+
+Part 1: Create the app deployment
+
+1. Sign in to the Microsoft Intune admin center
+2. Go to Apps
+3. Open All apps
+4. Click Create
+5. In the app type pane, under Microsoft 365 Apps, select:
+6. Windows 10 and later
+7. Click Select
+
+
+
+Part 2: Configure the app
+
+1. In App suite information, review or name the deployment
+2. Click Next
+3. In Configure app suite, choose the apps you want, for example:
+- Word
+- Excel
+- PowerPoint
+- Outlook
+- Teams if available in your build/options
+4. Choose update channel if prompted
+5. Set architecture if prompted
+6. Click Next
+
+
+Part 3: Assign the app
+
+1. In Assignments, choose how to target it
+2. Add a user group or device group
+3. for a lab, targeting a test user group is easiest
+4. Set it as Required if you want automatic installation
+5. Click Next
+6. Review and Create
+
+Part 4: Verify deployment
+
+1. On the enrolled Windows device, trigger a manual check-in if needed:
+- Settings > Accounts > Access work or school
+- select the connected work account
+- sync if available
+2. Or from Intune, use Sync
+3. Wait for app installation
+4. Verify Word, Excel, Outlook, etc. appear on the device
+5. In Intune, go back to the app object and review:
+- assignment status
+- install status
+- device/user status
+

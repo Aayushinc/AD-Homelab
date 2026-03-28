@@ -1,0 +1,63 @@
+Lab 12 : App Deployment via GPO 
+
+Step 1: Put the MSI in a shared folder
+
+On your server or domain controller:
+
+1. Create a folder, for example:
+C:\Software\7zip
+2. Copy the MSI file into that folder.
+3. Right-click the folder → Properties.
+4. Open the Sharing tab.
+5. Click Advanced Sharing.
+6. Check Share this folder.
+7. Give it a simple share name, such as Software$ or Software.
+8. Click Permissions.
+9. Add Domain Computers and give them Read.
+10. Also make sure the Security (NTFS) tab gives Domain Computers at least Read & Execute / Read.
+
+Use the package from a UNC path, such as:
+\\DC01\Software\7zip\appname.msi
+
+Do not browse to C:\... when adding the package in GPO; use the UNC path so clients can reach it. Microsoft and Microsoft Q&A both emphasize placing the MSI on a network share with client read access.
+
+
+
+Step 2: Open Group Policy Management
+
+1. On the domain controller, open Server Manager.
+2. Go to Tools → Group Policy Management.
+3. Create a new GPO
+4. In Group Policy Management, expand:
+5. Forest → Domains → yourdomain.local
+6. Find the OU that contains the computers you want to install the app on.
+7. Right-click that OU.
+8. Select Create a GPO in this domain, and Link it here…
+9. Name it something clear, for example:
+10. Deploy - 7-Zip
+11. Right-click the new GPO.
+12. Click Edit.
+
+Then go to:
+
+13. Computer Configuration
+→ Policies
+→ Software Settings
+→ Software installation
+
+14. Right-click Software installation.
+15. Click New → Package…
+16. In the file browser, type or browse to the UNC path, for example:
+\\DC01\Software\7zip\7z2301-x64.msi
+17. Click Open.
+18. When prompted for deployment method, choose Assigned.
+19. Click OK.
+
+
+On the target PC:
+
+20. Sign in as an admin.
+21. Open Command Prompt.
+22. Run:
+gpupdate /force
+23. Restart again.
