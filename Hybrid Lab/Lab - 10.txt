@@ -1,0 +1,75 @@
+Lab - 10 BitLocker Management with Intune
+
+1. Open the BitLocker policy area
+Sign in to the Microsoft Intune admin center
+Go to Endpoint security
+Click Disk encryption
+Click Create Policy
+2. Choose platform and profile
+Set Platform = Windows
+Set Profile = BitLocker
+Click Create
+
+Microsoft’s current Intune BitLocker guidance uses the Endpoint security disk encryption policy flow for Windows.
+
+3. Name the policy
+Use something like:
+BitLocker Policy - Lab
+Description:  Enables and manages BitLocker for Windows lab devices.
+
+
+4. Configure BitLocker settings
+For a basic lab, keep it simple.
+
+Useful settings to configure:
+
+Enable BitLocker for OS drive
+Recovery options enabled
+Store recovery info in the management system if supported in your setup
+Choose reasonable startup/recovery behavior
+
+Important note: Microsoft states many BitLocker settings are enforced when encryption is first turned on, so major changes later may not fully reapply the way you expect.
+
+5. Assign the policy
+Click Next
+In Assignments, choose:
+a Windows test device group, or
+a test user group
+Click Next
+
+6. Review and create
+Review the settings
+Click Create
+
+7. Sync the device
+Go to Devices > All devices
+Click the enrolled Windows device
+Click Sync
+
+This forces the device to check in sooner and helps the policy apply faster. Your previous Intune device-actions lab already supports this step.
+
+8. Verify BitLocker on the Windows device
+
+On the device:
+
+Open Control Panel
+Go to System and Security
+Open BitLocker Drive Encryption
+Check whether the OS drive shows as encrypted or encryption is in progress
+
+Or:
+
+Open Settings
+Search for BitLocker
+Check encryption status
+
+
+9. Verify in Intune
+Back in Intune:
+
+Open the device record
+Review:
+policy status
+encryption-related status if visible
+
+

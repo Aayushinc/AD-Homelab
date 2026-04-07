@@ -1,0 +1,58 @@
+Lab - 3 Intune Compliance Policy
+
+A. Open the compliance area
+1. Sign in to the Microsoft Intune admin center
+2. Go to Devices
+3. Under Manage devices, click Compliance
+4. Click Create policy
+
+B. Choose the platform
+1. Select Windows 10 and later
+2. Click Create
+
+C. Name the policy
+
+Use a clean name like:
+
+Windows Compliance Policy - Lab
+
+Add a description if you want:
+
+Checks BitLocker and core compliance requirements for enrolled Windows lab devices.
+
+
+D. Configure compliance settings
+
+You can keep this simple for the lab.
+
+Useful settings to enable:
+
+Require BitLocker = Yes
+Minimum OS version = optional
+Maximum OS version = optional
+Leave the rest simple unless you want stricter rules
+
+Microsoft’s Windows compliance settings specifically include checks such as BitLocker and OS version requirements.
+
+5. Assign the policy
+1. Click Next until you reach Assignments
+Add:
+a test user group, or
+a test device group
+For a lab, using a small test group is best
+
+
+6. Review and create
+1. Review the settings
+2. Click Create
+
+
+7. Verify compliance status
+1. Go to Devices > All devices
+2. Click your enrolled device
+3. Open the Device compliance area on the device page
+4. Check whether the device is:
+- Compliant
+- Not compliant
+In grace period
+If it is not compliant, open the policy details to see which setting failed

@@ -1,0 +1,73 @@
+Lab 9 - Conditional Access: Require Compliant Device
+
+A. Open Conditional Access
+1. Sign in to the Microsoft Entra admin center
+2. Go to Entra ID
+3 Click Conditional Access
+4. Click Policies
+5. Click New policy
+
+
+B. Name the policy
+
+Use something like:
+Require Compliant Device - Lab
+
+
+C. Choose users
+1. Under Assignments, open Users
+2. Under Include, choose:
+a test user, or
+a test group
+Do not apply it to everyone in a lab unless you are very sure
+Exclude your emergency admin or backup admin account if you have one
+
+Microsoft recommends staged rollout and careful scoping for Conditional Access policies.
+
+D. Choose target resources
+Under Target resources or Cloud apps / Resources
+Select the app(s) you want to protect
+
+For a lab, good examples are:
+
+Office 365
+Microsoft Admin Portals
+Exchange Online
+
+
+E. Optional: set device platforms
+Open Conditions
+Open Device platforms
+Turn the condition on
+Select Windows
+
+This keeps the lab clean and focused.
+
+F. Configure the grant control
+Open Access controls > Grant
+Choose Grant access
+Check:
+Require device to be marked as compliant
+Click Select
+
+Microsoft’s grant controls documentation states this uses compliance information sent from Intune to Microsoft Entra ID.
+
+G. Start in Report-only
+At the bottom, set Enable policy to Report-only
+Click Create
+
+This is safer for testing. Microsoft recommends careful rollout and validation for Conditional Access policies.
+
+H. Test and turn it on
+Try signing in with the test user from:
+a compliant device
+and optionally a non-compliant device
+Review the results
+Go back to the policy
+Change Enable policy from Report-only to On
+Save
+
+
+I . Validate results
+A compliant device should be allowed through
+A non-compliant device should be blocked or denied access depending on your scope
